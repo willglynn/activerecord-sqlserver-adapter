@@ -20,9 +20,9 @@ module ActiveRecord
             end
           when Date, Time
             if column && column.sql_type == 'datetime'
-              "'#{quoted_datetime(value)}'"
+              "'#{quoted_datetime(value)}'".gsub(/T/, ' ')
             elsif column && (column.sql_type == 'datetimeoffset' || column.sql_type == 'time')
-              "'#{quoted_full_iso8601(value)}'"
+              "'#{quoted_full_iso8601(value)}'".gsub(/T/, ' ')
             else
               super
             end
